@@ -262,3 +262,27 @@
 .game-over-content button:hover {
   background: #444;
 }
+
+.star-effect {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background: url("/star.png") no-repeat center/cover;
+  animation: star-explosion 1s ease-out;
+  z-index: 10;
+}
+
+@keyframes star-explosion {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}

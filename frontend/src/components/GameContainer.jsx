@@ -16,6 +16,7 @@ function GameContainer() {
   const [currentBackgroundIndex, setCurrentBackgroundIndex] = useState(0);
   const [nextBackgroundIndex, setNextBackgroundIndex] = useState(1);
   const [isFading, setIsFading] = useState(false);
+  const [starEffect, setStarEffect] = useState({ show: false, x: 0, y: 0 });
 
   const backgrounds = [
     "/forest.jpg",
@@ -76,11 +77,13 @@ function GameContainer() {
     }
   };
 
-  const onDropItem = (itemId, itemType, binType) => {
+  const onDropItem = (itemId, itemType, binType, binPosition) => {
     console.log("Dropped item:", itemId, itemType, binType);
     if (itemType === binType) {
       setScore((prevScore) => prevScore + 10);
       setItems((prevItems) => prevItems.filter((item) => item.id !== itemId));
+      setStarEffect({ show: true, x: binPosition.x, y: binPosition.y });
+      setTimeout(() => setStarEffect({ show: false, x: 0, y: 0 }), 1000);
     } else {
       setIsGameOver(true);
       setGameOverReason("incorrect");
@@ -143,6 +146,17 @@ function GameContainer() {
           backgroundImage: `url(${backgrounds[nextBackgroundIndex]})`,
         }}
       ></div>
+
+      {/* Star Effect */}
+      {starEffect.show && (
+        <div
+          className="star-effect"
+          style={{
+            left: `${starEffect.x}px`,
+            top: `${starEffect.y}px`,
+          }}
+        ></div>
+      )}
 
       <FallingGrid items={items} />
       <Bins onDropItem={onDropItem} />

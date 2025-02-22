@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useDrop } from "react-dnd";
 
 function Bin({ type, image, onDropItem }) {
+  const binRef = useRef(null);
+
   const [{ isOver }, drop] = useDrop(() => ({
     accept: "ITEM",
     drop: (item) => {
-      onDropItem(item.id, item.type, type);
+      const binRect = binRef.current.getBoundingClientRect();
+      const binPosition = { x: binRect.left + binRect.width / 2, y: binRect.top + binRect.height / 2 };
+      onDropItem(item.id, item.type, type, binPosition);
     },
     collect: (monitor) => ({
       isOver: !!monitor.isOver(),
@@ -14,7 +18,10 @@ function Bin({ type, image, onDropItem }) {
 
   return (
     <div
-      ref={drop}
+      ref={(node) => {
+        drop(node);
+        binRef.current = node;
+      }}
       className={`bin ${type}-bin`}
       data-bin-type={type}
       style={{
