@@ -13,7 +13,17 @@ function GameContainer() {
   const [isGameOver, setIsGameOver] = useState(false);
   const [gameOverReason, setGameOverReason] = useState(null);
   const [lastItemType, setLastItemType] = useState(null);
+  const [currentBackgroundIndex, setCurrentBackgroundIndex] = useState(0);
+  const [nextBackgroundIndex, setNextBackgroundIndex] = useState(1);
+  const [isFading, setIsFading] = useState(false);
 
+  const backgrounds = [
+    "/forest.jpg",
+    "/beach.jpg",
+    "/city.jpg",
+  ];
+
+  // Spawn Items
   const spawnItem = () => {
     const itemTypes = ["recycling", "trash", "compost"];
     const randomType = itemTypes[Math.floor(Math.random() * itemTypes.length)];
@@ -45,6 +55,7 @@ function GameContainer() {
     }
   };
 
+  // Move Items Downward
   const moveItems = () => {
     setItems((prevItems) =>
       prevItems.map((item) => {
@@ -83,8 +94,26 @@ function GameContainer() {
     setIsGameOver(false);
     setGameOverReason(null);
     setLastItemType(null);
+    setCurrentBackgroundIndex(0);
+    setNextBackgroundIndex(1);
   };
 
+  // Switch Backgrounds
+  useEffect(() => {
+    if (isGameOver) return;
+    const backgroundInterval = setInterval(() => {
+      setIsFading(true);
+      setTimeout(() => {
+        setCurrentBackgroundIndex((prev) => (prev + 1) % backgrounds.length);
+        setNextBackgroundIndex((prev) => (prev + 1) % backgrounds.length);
+        setIsFading(false); 
+      }, 1000); 
+    }, 30000); 
+
+    return () => clearInterval(backgroundInterval);
+  }, [isGameOver, backgrounds.length]);
+
+  // Game Loop
   useEffect(() => {
     if (isGameOver) return;
 
@@ -99,7 +128,22 @@ function GameContainer() {
 
   return (
     <div className="game-container">
-      <div className="background"></div>
+      {/* Current Background */}
+      <div
+        className={`background current-background ${isFading ? "fade-out" : ""}`}
+        style={{
+          backgroundImage: `url(${backgrounds[currentBackgroundIndex]})`,
+        }}
+      ></div>
+
+      {/* Next Background */}
+      <div
+        className={`background next-background ${isFading ? "fade-in" : ""}`}
+        style={{
+          backgroundImage: `url(${backgrounds[nextBackgroundIndex]})`,
+        }}
+      ></div>
+
       <FallingGrid items={items} />
       <Bins onDropItem={onDropItem} />
       <ScoreBoard score={score} />

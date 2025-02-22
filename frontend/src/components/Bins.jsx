@@ -1,4 +1,3 @@
-// Bins.jsx
 import React from "react";
 import Bin from "./Bin";
 import "../App.css";
