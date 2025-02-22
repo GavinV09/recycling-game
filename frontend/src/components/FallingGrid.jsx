@@ -1,9 +1,15 @@
-import '../App.css'
+import React from 'react';
+import FallingItem from './FallingItem';
+import '../App.css';
 
-function FallingGrid() {
-    return (
-        <div className="falling-grid"></div>
-    );
+function FallingGrid({ items }) {
+  return (
+    <div className="falling-grid">
+      {items.map((item) => (
+        <FallingItem key={item.id} item={item} />
+      ))}
+    </div>
+  );
 }
 
 export default FallingGrid;
