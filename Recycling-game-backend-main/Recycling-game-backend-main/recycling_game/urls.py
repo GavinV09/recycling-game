@@ -20,3 +20,11 @@ from django.urls import path
 urlpatterns = [
     path('admin/', admin.site.urls),
 ]
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('items/', views.get_recyclable_items, name='get_recyclable_items'),
+    path('check/', views.check_item, name='check_item'),
+    path('session/<str:player_id>/', views.get_game_session, name='get_game_session'),
+]
