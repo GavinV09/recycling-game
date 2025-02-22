@@ -67,13 +67,13 @@ function GameContainer() {
 
   // Check if item is placed correctly
   const onDropItem = (itemId, itemType, binType) => {
-    console.log('Dropped item:', itemId, itemType, binType); // Debugging
+    console.log('Dropped item:', itemId, itemType, binType);
     if (itemType === binType) {
       setScore((prevScore) => prevScore + 10);
       setItems((prevItems) => prevItems.filter((item) => item.id !== itemId));
     } else {
-      console.log('Incorrect placement! Game Over.'); // Debugging
-      setIsGameOver(true); // End the game if the item is placed in the wrong bin
+      console.log('Incorrect placement! Game Over.');
+      setIsGameOver(true);
     }
   };
 
