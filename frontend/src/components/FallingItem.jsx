@@ -5,7 +5,7 @@ import "../App.css";
 function FallingItem({ item }) {
   const [{ isDragging }, drag] = useDrag(() => ({
     type: "ITEM",
-    item: { id: item.id, type: item.type }, // Pass the item type
+    item: { id: item.id, type: item.type },
     collect: (monitor) => ({
       isDragging: !!monitor.isDragging(),
     }),
