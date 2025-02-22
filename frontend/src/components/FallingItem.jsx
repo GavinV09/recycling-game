@@ -1,10 +1,10 @@
-import React from 'react';
-import { useDrag } from 'react-dnd';
-import '../App.css';
+import React from "react";
+import { useDrag } from "react-dnd";
+import "../App.css";
 
 function FallingItem({ item }) {
   const [{ isDragging }, drag] = useDrag(() => ({
-    type: 'ITEM',
+    type: "ITEM",
     item: { type: item.type },
     collect: (monitor) => ({
       isDragging: !!monitor.isDragging(),

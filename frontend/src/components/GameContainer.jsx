@@ -25,6 +25,7 @@ function GameContainer() {
             type: randomType,
             x: randomX,
             name: randomItem.name,
+            image: randomItem.image,
             type: randomItem.type,
             y: 0,
         }

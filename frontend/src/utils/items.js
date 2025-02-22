@@ -16,16 +16,14 @@ export const ITEMS = [
     { type: 'recycling', name: 'Milk jug', image: '/items/recycling/milk_jug.png' },
   
     // Trash
-    { type: 'trash', name: 'Empty Doritos bag', image: '/item/trash/doritos_bag.png' },
+    { type: 'trash', name: 'Empty Doritos bag', image: '/items/trash/doritos_bag.png' },
     { type: 'trash', name: 'Greasy pizza box', image: '/items/trash/pizza_box.png' },
     { type: 'trash', name: 'Used napkin', image: '/items/trash/napkin.png' },
     { type: 'trash', name: 'Disposable coffee cup', image: '/items/trash/coffee_cup.png' },
     { type: 'trash', name: 'Styrofoam cup', image: '/items/trash/styrofoam_cup.png' },
-    { type: 'trash', name: 'Receipts', image: '/items/trash/receipts.png' },
     { type: 'trash', name: 'Broken glass container', image: '/items/trash/broken_glass.png' },
   
     // Compost
-    { type: 'compost', name: 'Wet/dirty cardboard', image: '/items/compost/cardboard.png' },
     { type: 'compost', name: 'Fruit peels', image: '/items/compost/fruit_peels.png' },
     { type: 'compost', name: 'Egg shells', image: '/items/compost/egg_shells.png' },
     { type: 'compost', name: 'Bread', image: '/items/compost/bread.png' },
