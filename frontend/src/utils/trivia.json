@@ -1,0 +1,127 @@
+[
+    {
+      "id": 1,
+      "fact": "Recycling one aluminum can saves enough energy to run a TV for 3 hours.",
+      "category": "Recycling"
+    },
+    {
+      "id": 2,
+      "fact": "Plastic bags can take up to 1,000 years to decompose in landfills.",
+      "category": "Waste Management"
+    },
+    {
+      "id": 3,
+      "fact": "Turning off the tap while brushing your teeth can save up to 8 gallons of water per day.",
+      "category": "Water Conservation"
+    },
+    {
+      "id": 4,
+      "fact": "Recycling one ton of paper saves 17 trees and 7,000 gallons of water.",
+      "category": "Recycling"
+    },
+    {
+      "id": 5,
+      "fact": "The average person generates over 4 pounds of trash every day.",
+      "category": "Waste Management"
+    },
+    {
+      "id": 6,
+      "fact": "Recycling one glass bottle saves enough energy to power a computer for 25 minutes.",
+      "category": "Recycling"
+    },
+    {
+      "id": 7,
+      "fact": "Landfills are the third-largest source of methane emissions in the U.S.",
+      "category": "Waste Management"
+    },
+    {
+      "id": 8,
+      "fact": "It takes 500 years for a disposable diaper to decompose in a landfill.",
+      "category": "Waste Management"
+    },
+    {
+      "id": 9,
+      "fact": "The U.S. produces about 292 million tons of municipal solid waste each year.",
+      "category": "Waste Management"
+    },
+    {
+      "id": 10,
+      "fact": "Food waste accounts for about 22% of all waste in landfills.",
+      "category": "Waste Management"
+    },
+    {
+      "id": 11,
+      "fact": "A single person can reduce their waste by up to 25% by composting food scraps.",
+      "category": "Waste Management"
+    },
+    {
+      "id": 12,
+      "fact": "Electronic waste (e-waste) accounts for 70% of toxic waste in landfills.",
+      "category": "Waste Management"
+    },
+    {
+      "id": 13,
+      "fact": "Styrofoam never fully decomposes—it breaks into smaller pieces that pollute the environment for centuries.",
+      "category": "Waste Management"
+    },
+    {
+      "id": 14,
+      "fact": "Recycling one ton of cardboard saves 46 gallons of oil.",
+      "category": "Recycling"
+    },
+    {
+      "id": 15,
+      "fact": "Over 75% of waste is recyclable, but only about 30% of it is actually recycled.",
+      "category": "Recycling"
+    },
+    {
+      "id": 16,
+      "fact": "Recycling one ton of steel conserves 2,500 pounds of iron ore, 1,400 pounds of coal, and 120 pounds of limestone.",
+      "category": "Recycling"
+    },
+    {
+      "id": 17,
+      "fact": "The energy saved by recycling one glass bottle can power a 100-watt light bulb for 4 hours.",
+      "category": "Recycling"
+    },
+    {
+      "id": 18,
+      "fact": "Recycling one ton of paper saves 4,000 kilowatts of energy—enough to power the average home for 6 months.",
+      "category": "Recycling"
+    },
+    {
+      "id": 19,
+      "fact": "Recycling one ton of plastic saves 16.3 barrels of oil.",
+      "category": "Recycling"
+    },
+    {
+      "id": 20,
+      "fact": "The average American throws away about 1,200 pounds of organic garbage each year that could be composted.",
+      "category": "Waste Management"
+    },
+    {
+      "id": 21,
+      "fact": "A leaky faucet that drips once per second can waste more than 3,000 gallons of water per year.",
+      "category": "Water Conservation"
+    },
+    {
+      "id": 22,
+      "fact": "Using a reusable water bottle instead of disposable plastic bottles can save an average of 156 plastic bottles per person annually.",
+      "category": "Recycling"
+    },
+    {
+      "id": 23,
+      "fact": "Planting trees can reduce energy costs by providing shade in the summer and windbreaks in the winter.",
+      "category": "Environmental Conservation"
+    },
+    {
+      "id": 24,
+      "fact": "Unplugging electronics when not in use can save up to 10% of your energy bill.",
+      "category": "Energy Conservation"
+    },
+    {
+      "id": 25,
+      "fact": "Using public transportation instead of driving can reduce your carbon footprint by up to 4,800 pounds of CO2 per year.",
+      "category": "Environmental Conservation"
+    }
+  ]

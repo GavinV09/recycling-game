@@ -6,6 +6,7 @@ import Bins from "./Bins.jsx";
 import ScoreBoard from "./ScoreBoard.jsx";
 import LeaderBoard from "./LeaderBoard.jsx";
 import GameOverPopup from "./GameOverPopup.jsx";
+import TriviaPop from "./TriviaPop.jsx";
 
 function GameContainer() {
   const [score, setScore] = useState(0);
@@ -17,12 +18,9 @@ function GameContainer() {
   const [nextBackgroundIndex, setNextBackgroundIndex] = useState(1);
   const [isFading, setIsFading] = useState(false);
   const [starEffect, setStarEffect] = useState({ show: false, x: 0, y: 0 });
+  const [showTrivia, setShowTrivia] = useState(false);
 
-  const backgrounds = [
-    "/forest.jpg",
-    "/beach.jpg",
-    "/city.jpg",
-  ];
+  const backgrounds = ["/forest.jpg", "/beach.jpg", "/city.jpg"];
 
   // Spawn Items
   const spawnItem = () => {
@@ -69,6 +67,21 @@ function GameContainer() {
     );
   };
 
+  // Show trivia at specific intervals
+  useEffect(() => {
+    if (isGameOver) return;
+
+    const triviaInterval = setInterval(() => {
+      setShowTrivia(true);
+
+      setTimeout(() => {
+        setShowTrivia(false);
+      }, 5000); 
+    }, 30000); 
+
+    return () => clearInterval(triviaInterval);
+  }, [isGameOver]);
+
   const checkGameOver = () => {
     const missedItem = items.find((item) => item.y >= 100);
     if (missedItem) {
@@ -109,9 +122,9 @@ function GameContainer() {
       setTimeout(() => {
         setCurrentBackgroundIndex((prev) => (prev + 1) % backgrounds.length);
         setNextBackgroundIndex((prev) => (prev + 1) % backgrounds.length);
-        setIsFading(false); 
-      }, 1000); 
-    }, 30000); 
+        setIsFading(false);
+      }, 1000);
+    }, 15000);
 
     return () => clearInterval(backgroundInterval);
   }, [isGameOver, backgrounds.length]);
@@ -133,7 +146,9 @@ function GameContainer() {
     <div className="game-container">
       {/* Current Background */}
       <div
-        className={`background current-background ${isFading ? "fade-out" : ""}`}
+        className={`background current-background ${
+          isFading ? "fade-out" : ""
+        }`}
         style={{
           backgroundImage: `url(${backgrounds[currentBackgroundIndex]})`,
         }}
@@ -162,6 +177,10 @@ function GameContainer() {
       <Bins onDropItem={onDropItem} />
       <ScoreBoard score={score} />
       <LeaderBoard />
+
+      {/* Display the trivia pop-up */}
+      {showTrivia && !isGameOver && <TriviaPop />}
+
       <GameOverPopup
         isGameOver={isGameOver}
         reason={gameOverReason}
