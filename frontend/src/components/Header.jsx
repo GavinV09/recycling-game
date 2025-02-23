@@ -1,17 +1,19 @@
 import React from "react";
-import { Link } from "react-router-dom"; // Import Link
+import { Link } from "react-router-dom";
+import TeamMembers from "./TeamMembers"; 
 import "../App.css";
 
 function Header() {
   return (
     <header className="header">
       <nav className="navbar">
-        {/* Wrap the logo in a Link to navigate to the home page */}
-        <Link to="/">
-          <img src="/RecycleQuest game logo for React.png" alt="Logo" />
-        </Link>
+        <div className="logo-and-team">
+          <Link to="/">
+            <img src="/RecycleQuest game logo for React.png" alt="Logo" className="logo-image" />
+          </Link>
+          <TeamMembers /> 
+        </div>
         <ul className="nav-links">
-          {/* Replace <a> with <Link> for smooth navigation */}
           <li>
             <Link to="/about">About</Link>
           </li>
@@ -26,7 +28,6 @@ function Header() {
       <div className="hero">
         <h1>Welcome to RecycleQuest</h1>
         <p>An interactive game to teach kids about recycling and environmental conservation.</p>
-        {/* Wrap the button in a Link to navigate to the game page */}
         <Link to="/game">
           <button className="cta-button">Play Now</button>
         </Link>

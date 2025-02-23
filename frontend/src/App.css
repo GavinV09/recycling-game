@@ -338,19 +338,95 @@ body {
   background: #4CAF50;
   color: white;
   padding: 20px;
+}
+
+.navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
+.logo-and-team {
+  display: flex;
+  align-items: center;
+  gap: 80px; 
+}
+
 .logo-image {
-  height: 50px;
+  height: 300px; /* Increased size */
+  width: auto; /* Maintain aspect ratio */
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px; 
+  margin: 0;
+  padding: 0;
 }
 
 .nav-links a {
   color: white;
   text-decoration: none;
-  margin: 0 10px;
+  font-size: 1.6rem;
+}
+
+.nav-links a:hover {
+  text-decoration: underline;
+}
+
+.hero {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.cta-button {
+  background: white;
+  color: #4CAF50;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.cta-button:hover {
+  background: #f0f0f0;
+}
+
+/* TeamMembers component styles */
+.team-members {
+  text-align: center;
+}
+
+.team-members h2 {
+  font-size: 1rem; /* Smaller font size for header */
+  margin-bottom: 5px;
+  color: white;
+}
+
+.team-photos {
+  display: flex;
+  gap: 50px; /* Space between photos */
+}
+
+.team-photos img {
+  width: 200px; /* Smaller images */
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid white;
 }
 
 /* Home Page Styles */
