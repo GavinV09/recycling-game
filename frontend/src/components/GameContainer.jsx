@@ -10,6 +10,11 @@ import TriviaPop from "./TriviaPop.jsx";
 
 function GameContainer() {
   const [score, setScore] = useState(0);
+  const [highScore, setHighScore] = useState(() => {
+    // Load high score from localStorage or default to 0
+    const savedHighScore = localStorage.getItem("highScore");
+    return savedHighScore ? parseInt(savedHighScore, 10) : 0;
+  });
   const [items, setItems] = useState([]);
   const [isGameOver, setIsGameOver] = useState(false);
   const [gameOverReason, setGameOverReason] = useState(null);
@@ -89,6 +94,16 @@ function GameContainer() {
       setGameOverReason("bottom");
     }
   };
+
+  // Update high score when the game ends
+  useEffect(() => {
+    if (isGameOver) {
+      if (score > highScore) {
+        setHighScore(score);
+        localStorage.setItem("highScore", score.toString());
+      }
+    }
+  }, [isGameOver, score, highScore]);
 
   const onDropItem = (itemId, itemType, binType, binPosition) => {
     console.log("Dropped item:", itemId, itemType, binType);
@@ -175,7 +190,7 @@ function GameContainer() {
 
       <FallingGrid items={items} />
       <Bins onDropItem={onDropItem} />
-      <ScoreBoard score={score} />
+      <ScoreBoard score={score} highScore={highScore} />
       <LeaderBoard />
 
       {/* Display the trivia pop-up */}

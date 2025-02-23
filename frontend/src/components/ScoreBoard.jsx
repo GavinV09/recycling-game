@@ -1,11 +1,11 @@
 import '../App.css'
 
-function ScoreBoard({score}) {
+function ScoreBoard({ score, highScore }) {
     return (
-        <div className="score-board">
-            <h1>Current Score: <span className="score">{score}</span></h1>
-        </div>
-    )
-}
-
-export default ScoreBoard;
+      <div className="score-board">
+        <h1>Score: {score}</h1>
+        <h2>High Score: {highScore}</h2>
+      </div>
+    );
+  }
+  export default ScoreBoard;

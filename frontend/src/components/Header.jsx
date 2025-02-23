@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import TeamMembers from "./TeamMembers"; 
 import "../App.css";
 
-function Header() {
+function Header({ theme, toggleTheme }) {
   return (
     <header className="header">
       <nav className="navbar">
@@ -24,6 +24,9 @@ function Header() {
             <Link to="/contact">Contact</Link>
           </li>
         </ul>
+        <button className="theme-toggle" onClick={toggleTheme}>
+          {theme === "light" ? "🌙 Dark Mode" : "☀️ Light Mode"}
+        </button>
       </nav>
       <div className="hero">
         <h1>Welcome to RecycleQuest</h1>
