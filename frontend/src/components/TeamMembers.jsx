@@ -16,7 +16,7 @@ function TeamMembers(){
         </div>
         <div className="team-member">
             <img src="/anya.jpg" alt="Aritro" />
-            <p>Anya Shy</p>
+            <p>Anya Shyvilka</p>
         </div>
       </div>
     </div>
