@@ -36,25 +36,48 @@ function GameContainer() {
   // Spawn Items
   const spawnItem = () => {
     if (isPaused || isGameOver) return;
-
+  
     const itemTypes = ["recycling", "trash", "compost"];
     const randomType = itemTypes[Math.floor(Math.random() * itemTypes.length)];
     const matchingItems = ITEMS.filter((item) => item.type === randomType);
     const randomItem = matchingItems[Math.floor(Math.random() * matchingItems.length)];
-
+  
     const gridLeft = 0;
     const gridWidth = 100;
-    const randomX = gridLeft + Math.random() * gridWidth;
-
+    let randomX, randomY = 0; // Start at the top
+    let isOverlapping;
+  
+    // Try to find a non-overlapping position
+    let attempts = 0;
+    const maxAttempts = 100; // Prevent infinite loops
+  
+    do {
+      randomX = gridLeft + Math.random() * gridWidth;
+  
+      // Check if the new item overlaps with any existing item
+      isOverlapping = items.some(
+        (item) =>
+          Math.abs(item.x - randomX) < 10 && Math.abs(item.y - randomY) < 10
+      );
+  
+      attempts++;
+    } while (isOverlapping && attempts < maxAttempts);
+  
+    // If no valid position is found after max attempts, skip spawning the item
+    if (isOverlapping) {
+      console.log("Could not find a non-overlapping position. Skipping item spawn.");
+      return;
+    }
+  
     const newItem = {
       id: Date.now(),
       type: randomType,
       x: randomX,
+      y: randomY,
       name: randomItem.name,
       image: randomItem.image,
-      y: 0,
     };
-
+  
     setItems((prevItems) => [...prevItems, newItem]);
   };
 
