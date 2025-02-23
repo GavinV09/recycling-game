@@ -24,17 +24,23 @@ function GameContainer() {
   const [isFading, setIsFading] = useState(false);
   const [starEffect, setStarEffect] = useState({ show: false, x: 0, y: 0 });
   const [showTrivia, setShowTrivia] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
 
   const backgrounds = ["/forest.jpg", "/beach.jpg", "/city.jpg"];
 
+  // Toggle Pause/Play
+  const togglePause = () => {
+    setIsPaused((prev) => !prev);
+  };
+
   // Spawn Items
   const spawnItem = () => {
+    if (isPaused || isGameOver) return;
+
     const itemTypes = ["recycling", "trash", "compost"];
     const randomType = itemTypes[Math.floor(Math.random() * itemTypes.length)];
-
     const matchingItems = ITEMS.filter((item) => item.type === randomType);
-    const randomItem =
-      matchingItems[Math.floor(Math.random() * matchingItems.length)];
+    const randomItem = matchingItems[Math.floor(Math.random() * matchingItems.length)];
 
     const gridLeft = 0;
     const gridWidth = 100;
@@ -49,45 +55,35 @@ function GameContainer() {
       y: 0,
     };
 
-    const isOverlapping = items.some(
-      (item) =>
-        Math.abs(item.x - newItem.x) < 10 && Math.abs(item.y - newItem.y) < 10
-    );
-
-    if (!isOverlapping) {
-      setItems((prevItems) => [...prevItems, newItem]);
-    }
+    setItems((prevItems) => [...prevItems, newItem]);
   };
 
   // Move Items Downward
   const moveItems = () => {
+    if (isPaused || isGameOver) return;
+
     setItems((prevItems) =>
-      prevItems.map((item) => {
-        const newY = item.y + 1;
-        return {
-          ...item,
-          y: newY <= 100 ? newY : item.y,
-        };
-      })
+      prevItems.map((item) => ({
+        ...item,
+        y: item.y + 1 <= 100 ? item.y + 1 : item.y,
+      }))
     );
   };
 
   // Show trivia at specific intervals
   useEffect(() => {
-    if (isGameOver) return;
+    if (isGameOver || isPaused) return;
 
-    const triviaInterval = setInterval(() => {
+    const interval = setInterval(() => {
       setShowTrivia(true);
+    }, 30000);
 
-      setTimeout(() => {
-        setShowTrivia(false);
-      }, 5000); 
-    }, 30000); 
-
-    return () => clearInterval(triviaInterval);
-  }, [isGameOver]);
+    return () => clearInterval(interval);
+  }, [isGameOver, isPaused]);
 
   const checkGameOver = () => {
+    if (isPaused) return;
+
     const missedItem = items.find((item) => item.y >= 100);
     if (missedItem) {
       setIsGameOver(true);
@@ -106,6 +102,7 @@ function GameContainer() {
   }, [isGameOver, score, highScore]);
 
   const onDropItem = (itemId, itemType, binType, binPosition) => {
+    if (isPaused) return;
     console.log("Dropped item:", itemId, itemType, binType);
     if (itemType === binType) {
       setScore((prevScore) => prevScore + 10);
@@ -146,7 +143,7 @@ function GameContainer() {
 
   // Game Loop
   useEffect(() => {
-    if (isGameOver) return;
+    if (isGameOver || isPaused) return;
 
     const interval = setInterval(() => {
       spawnItem();
@@ -155,7 +152,7 @@ function GameContainer() {
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [isGameOver, items]);
+  }, [isGameOver, isPaused, items]);
 
   return (
     <div className="game-container">
@@ -192,6 +189,12 @@ function GameContainer() {
       <Bins onDropItem={onDropItem} />
       <ScoreBoard score={score} highScore={highScore} />
       <LeaderBoard />
+
+      {/* Pause/Play Button */}
+      <button className="pause-play-btn" onClick={togglePause}>
+        {isPaused ? "▶ Play" : "⏸ Pause"}
+      </button>
+      {isPaused && <div className="paused-overlay">Game Paused</div>}
 
       {/* Display the trivia pop-up */}
       {showTrivia && !isGameOver && <TriviaPop />}

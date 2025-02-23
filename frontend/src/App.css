@@ -296,23 +296,23 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0); /* Fully transparent background */
+  background: rgba(0, 0, 0, 0);
   display: flex;
-  justify-content: flex-end; /* Align to the right */
-  align-items: flex-end; /* Align to the bottom */
-  z-index: 1000; /* Ensure it's above everything else */
-  pointer-events: none; /* Make it non-interactive */
+  justify-content: flex-end;
+  align-items: flex-end;
+  z-index: 1000; 
+  pointer-events: none;
 }
 
 .popup-content {
-  background: rgba(255, 255, 255, 0.9); /* Slightly transparent white */
+  background: rgba(255, 255, 255, 0.9); 
   padding: 20px;
   border-radius: 10px;
-  max-width: 300px; /* Adjust width as needed */
+  max-width: 300px; 
   text-align: center;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  margin: 20px; /* Add some margin to avoid touching the edges */
-  pointer-events: none; /* Make it non-interactive */
+  margin: 20px; 
+  pointer-events: none;
 }
 
 .popup-content h2 {
@@ -605,4 +605,36 @@ body {
   --header-bg: #444;
   --btn-bg: #ffc107;
   --btn-text: #000;
+}
+
+/* Pause/Play Button */
+.pause-play-btn {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  z-index: 1000; 
+}
+
+.pause-play-btn:hover {
+  background-color: #45a049;
+}
+
+.paused-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2rem;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 20px;
+  border-radius: 10px;
+  z-index: 1000;
 }
