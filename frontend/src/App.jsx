@@ -4,7 +4,6 @@ import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import Home from "./components/Home";
 import About from "./components/About";
 import Contact from "./components/Contact";
 import GameContainer from "./components/GameContainer";
@@ -18,7 +17,6 @@ function App() {
       <Router>
         <Header />
         <Routes>
-          <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route
